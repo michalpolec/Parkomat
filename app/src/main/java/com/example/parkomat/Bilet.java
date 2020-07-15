@@ -5,29 +5,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Bilet extends AppCompatActivity {
 
     TextView DataPostoju;
     TextView CzasPostoju;
-    TextView Oplata;
+    TextView Payment;
     TextView DataWydruku;
     TextView CzasWydruku;
     TextView NumerRejestracyjny;
@@ -57,8 +47,8 @@ public class Bilet extends AppCompatActivity {
         CzasPostoju = (TextView)findViewById(R.id.CzasPostoju);
         CzasPostoju.setText(time);
 
-        Oplata = (TextView)findViewById(R.id.Oplata);
-        Oplata.setText(money + " PLN");
+        Payment = (TextView)findViewById(R.id.Oplata);
+        Payment.setText(money + " PLN");
 
         DataWydruku = (TextView)findViewById(R.id.DataRozp);
         DataWydruku.setText(currentDate);

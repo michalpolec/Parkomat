@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Bilet extends AppCompatActivity {
+public class Ticket extends AppCompatActivity {
 
     TextView DataPostoju;
     TextView CzasPostoju;
@@ -66,7 +66,7 @@ public class Bilet extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Bilet.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Ticket.this);
                 builder.setTitle("Odbierz swój bilet");
                 builder.setMessage("Dziękujemy za skorzystanie z naszego parkomatu!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

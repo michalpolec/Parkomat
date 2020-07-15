@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -23,11 +22,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
@@ -97,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
                     });
                     builder.show();
                 } else {
-                    Intent ticket = new Intent(MainActivity.this, Bilet.class);
-                    Bilet.setMoney(howMuchToPay());
-                    Bilet.setTime(ileCzasu());
-                    Bilet.setCurrentTime(actualTime());
-                    Bilet.setCurrentDate(currentDate);
-                    Bilet.setDate(Date);
-                    Bilet.setNumber(whichNumber());
+                    Intent ticket = new Intent(MainActivity.this, Ticket.class);
+                    Ticket.setMoney(howMuchToPay());
+                    Ticket.setTime(ileCzasu());
+                    Ticket.setCurrentTime(actualTime());
+                    Ticket.setCurrentDate(currentDate);
+                    Ticket.setDate(Date);
+                    Ticket.setNumber(whichNumber());
                     addVehicle();
 
                     startActivity(ticket);

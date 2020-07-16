@@ -15,18 +15,18 @@ import android.widget.TextView;
 
 public class Ticket extends AppCompatActivity {
 
-    TextView textOfDateOfParking;
-    TextView textOfTimeOfParking;
-    TextView textOfPayment;
-    TextView textOfPrintDate;
-    TextView textOfPrintTime;
-    TextView textOfRegistrationNumber;
+    TextView viewOfDateOfParking;
+    TextView viewOfTimeOfParking;
+    TextView viewOfTicketFee;
+    TextView viewOfPrintDate;
+    TextView viewOfPrintTime;
+    TextView viewOfRegistrationNumber;
 
     Button buttonOfTheEndOfProgram;
 
-    static String money = "0.00";
-    static String time = "00:00";
-    static String date = "00.00.0000";
+    static String ticketFee = "0.00";
+    static String timeOfParking = "00:00";
+    static String dateOfParking = "00.00.0000";
     static String currentTime = "00:00";
     static String currentDate = "00.00.0000";
     static String registrationNumber = "000 0000";
@@ -41,23 +41,23 @@ public class Ticket extends AppCompatActivity {
 
     private void init()
     {
-        textOfDateOfParking = (TextView)findViewById(R.id.DataPostoju);
-        textOfDateOfParking.setText(date);
+        viewOfDateOfParking = (TextView)findViewById(R.id.DataPostoju);
+        viewOfDateOfParking.setText(dateOfParking);
 
-        textOfTimeOfParking = (TextView)findViewById(R.id.CzasPostoju);
-        textOfTimeOfParking.setText(time);
+        viewOfTimeOfParking = (TextView)findViewById(R.id.CzasPostoju);
+        viewOfTimeOfParking.setText(timeOfParking);
 
-        textOfPayment = (TextView)findViewById(R.id.Oplata);
-        textOfPayment.setText(money + " PLN");
+        viewOfTicketFee = (TextView)findViewById(R.id.Oplata);
+        viewOfTicketFee.setText(ticketFee + " PLN");
 
-        textOfPrintDate = (TextView)findViewById(R.id.DataRozp);
-        textOfPrintDate.setText(currentDate);
+        viewOfPrintDate = (TextView)findViewById(R.id.DataRozp);
+        viewOfPrintDate.setText(currentDate);
 
-        textOfPrintTime = (TextView)findViewById(R.id.CzasRozp);
-        textOfPrintTime.setText(currentTime);
+        viewOfPrintTime = (TextView)findViewById(R.id.CzasRozp);
+        viewOfPrintTime.setText(currentTime);
 
-        textOfRegistrationNumber = (TextView)findViewById(R.id.NumerRejestr);
-        textOfRegistrationNumber.setText(registrationNumber);
+        viewOfRegistrationNumber = (TextView)findViewById(R.id.NumerRejestr);
+        viewOfRegistrationNumber.setText(registrationNumber);
 
 
         buttonOfTheEndOfProgram = (Button) findViewById(R.id.TheEnd);
@@ -86,29 +86,29 @@ public class Ticket extends AppCompatActivity {
         });
     }
 
-    public static void setMoney(String oplata)
+    public static void setTicketFee(String ticketFee)
     {
-        money = oplata;
+        Ticket.ticketFee = ticketFee;
     }
-    public static void setTime(String czas)
+    public static void setTimeOfParking(String timeOfParking)
     {
-        time = czas;
+        Ticket.timeOfParking = timeOfParking;
     }
-    public static void setCurrentTime(String aktualnyCzas)
+    public static void setCurrentTime(String currentTime)
     {
-        currentTime = aktualnyCzas;
+        Ticket.currentTime = currentTime;
     }
-    public static void setCurrentDate(String aktualnaData)
+    public static void setCurrentDate(String currentDate)
     {
-        currentDate = aktualnaData;
+        Ticket.currentDate = currentDate;
     }
-    public static void setDate(String data)
+    public static void setDateOfParking(String dateOfParking)
     {
-        date = data;
+        Ticket.dateOfParking = dateOfParking;
     }
-    public static void setNumber(String numer)
+    public static void setNumber(String registrationNumber)
     {
-        registrationNumber = numer;
+        Ticket.registrationNumber = registrationNumber;
     }
 
 

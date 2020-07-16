@@ -15,21 +15,21 @@ import android.widget.TextView;
 public class Cash extends AppCompatActivity {
 
     // Opłata za parking
-    AutoCompleteTextView oplata;
-    TextView Data;
-    TextView Czas;
+    AutoCompleteTextView viewOfTicketFee;
+    TextView viewOfDate;
+    TextView viewOfTime;
 
-    Button DZIgr;
-    Button DWADgr;
-    Button PIEgr;
-    Button JEDpln;
-    Button DWApln;
-    Button PIECpln;
-    Button DZIpln;
-    Button DWADpln;
-    Button PIEpln;
-    Button reszta;
-    Button Anuluj;
+    Button coinOfTenGroszy;
+    Button coinOfTwentyGroszy;
+    Button coinOfFiftyGroszy;
+    Button coinOfOneZloty;
+    Button coinOfTwoZloty;
+    Button coinOfFiveZloty;
+    Button banknoteOfTenZloty;
+    Button banknoteOfTwentyZloty;
+    Button banknoteOfFiftyZloty;
+    Button buttonOfRefund;
+    Button buttonOfCancelPayment;
 
     static String calkowitaOplata;
     static String money = "0.00";
@@ -43,14 +43,14 @@ public class Cash extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monety);
-        oplata = (AutoCompleteTextView)findViewById(R.id.kosztPostoju);
-        oplata.setText(money);
+        viewOfTicketFee = (AutoCompleteTextView)findViewById(R.id.kosztPostoju);
+        viewOfTicketFee.setText(money);
 
-        Data = (TextView)findViewById(R.id.Data);
-        Data.setText(date);
+        viewOfDate = (TextView)findViewById(R.id.Data);
+        viewOfDate.setText(date);
 
-        Czas = (TextView)findViewById(R.id.Czas);
-        Czas.setText(time);
+        viewOfTime = (TextView)findViewById(R.id.Czas);
+        viewOfTime.setText(time);
 
         init();
     }
@@ -59,8 +59,8 @@ public class Cash extends AppCompatActivity {
     {
             kasaPoczątkowa = money;
 
-            DZIgr = (Button) findViewById(R.id.dziesiecgr);
-            DZIgr.setOnClickListener(new View.OnClickListener() {
+            coinOfTenGroszy = (Button) findViewById(R.id.dziesiecgr);
+            coinOfTenGroszy.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -68,8 +68,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            DWADgr = (Button) findViewById(R.id.dwadziesciagr);
-            DWADgr.setOnClickListener(new View.OnClickListener() {
+            coinOfTwentyGroszy = (Button) findViewById(R.id.dwadziesciagr);
+            coinOfTwentyGroszy.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -77,8 +77,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            PIEgr = (Button) findViewById(R.id.piedzesiatgr);
-            PIEgr.setOnClickListener(new View.OnClickListener() {
+            coinOfFiftyGroszy = (Button) findViewById(R.id.piedzesiatgr);
+            coinOfFiftyGroszy.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -86,8 +86,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            JEDpln = (Button) findViewById(R.id.jedenpln);
-            JEDpln.setOnClickListener(new View.OnClickListener() {
+            coinOfOneZloty = (Button) findViewById(R.id.jedenpln);
+            coinOfOneZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -95,8 +95,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            DWApln = (Button) findViewById(R.id.dwapln);
-            DWApln.setOnClickListener(new View.OnClickListener() {
+            coinOfTwoZloty = (Button) findViewById(R.id.dwapln);
+            coinOfTwoZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -104,8 +104,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            PIECpln = (Button) findViewById(R.id.piecpln);
-            PIECpln.setOnClickListener(new View.OnClickListener() {
+            coinOfFiveZloty = (Button) findViewById(R.id.piecpln);
+            coinOfFiveZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -113,8 +113,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            DZIpln = (Button) findViewById(R.id.dziesiecpln);
-            DZIpln.setOnClickListener(new View.OnClickListener() {
+            banknoteOfTenZloty = (Button) findViewById(R.id.dziesiecpln);
+            banknoteOfTenZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -122,8 +122,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            DWADpln = (Button) findViewById(R.id.dwadziesciapln);
-            DWADpln.setOnClickListener(new View.OnClickListener() {
+            banknoteOfTwentyZloty = (Button) findViewById(R.id.dwadziesciapln);
+            banknoteOfTwentyZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -131,8 +131,8 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            PIEpln = (Button) findViewById(R.id.piedziesiatpln);
-            PIEpln.setOnClickListener(new View.OnClickListener() {
+            banknoteOfFiftyZloty = (Button) findViewById(R.id.piedziesiatpln);
+            banknoteOfFiftyZloty.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -140,16 +140,16 @@ public class Cash extends AppCompatActivity {
                     setOplata();
                 }
             });
-            reszta = (Button) findViewById(R.id.change);
-            reszta.setOnClickListener(new View.OnClickListener() {
+            buttonOfRefund = (Button) findViewById(R.id.change);
+            buttonOfRefund.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    oplata.setText(kasaPoczątkowa);
+                    viewOfTicketFee.setText(kasaPoczątkowa);
                 }
             });
-            Anuluj  = (Button) findViewById(R.id.cancel);
-            Anuluj.setOnClickListener(new View.OnClickListener() {
+            buttonOfCancelPayment = (Button) findViewById(R.id.cancel);
+            buttonOfCancelPayment.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
@@ -193,7 +193,7 @@ public class Cash extends AppCompatActivity {
         }
         else {
             money = String.valueOf(zaokraglanie(zloty) + "0");
-            oplata.setText(money);
+            viewOfTicketFee.setText(money);
         }
     }
 

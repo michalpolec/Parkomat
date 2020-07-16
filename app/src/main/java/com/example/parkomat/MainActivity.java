@@ -94,11 +94,11 @@ public class MainActivity extends AppCompatActivity {
                     builder.show();
                 } else {
                     Intent ticket = new Intent(MainActivity.this, Ticket.class);
-                    Ticket.setMoney(howMuchToPay());
-                    Ticket.setTime(ileCzasu());
+                    Ticket.setTicketFee(howMuchToPay());
+                    Ticket.setTimeOfParking(ileCzasu());
                     Ticket.setCurrentTime(actualTime());
                     Ticket.setCurrentDate(currentDate);
-                    Ticket.setDate(Date);
+                    Ticket.setDateOfParking(Date);
                     Ticket.setNumber(whichNumber());
                     addVehicle();
 

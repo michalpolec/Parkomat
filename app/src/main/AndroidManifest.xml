@@ -13,7 +13,7 @@
             android:name=".Ticket"
             android:label="@string/title_activity_bilet"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Monety" />
+        <activity android:name=".Cash" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

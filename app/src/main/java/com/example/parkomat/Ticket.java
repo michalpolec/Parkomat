@@ -15,21 +15,21 @@ import android.widget.TextView;
 
 public class Ticket extends AppCompatActivity {
 
-    TextView DataPostoju;
-    TextView CzasPostoju;
-    TextView Payment;
-    TextView DataWydruku;
-    TextView CzasWydruku;
-    TextView NumerRejestracyjny;
+    TextView textOfDateOfParking;
+    TextView textOfTimeOfParking;
+    TextView textOfPayment;
+    TextView textOfPrintDate;
+    TextView textOfPrintTime;
+    TextView textOfRegistrationNumber;
 
-    Button theEnd;
+    Button buttonOfTheEndOfProgram;
 
     static String money = "0.00";
     static String time = "00:00";
     static String date = "00.00.0000";
     static String currentTime = "00:00";
     static String currentDate = "00.00.0000";
-    static String Numer = "000 0000";
+    static String registrationNumber = "000 0000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,27 +41,27 @@ public class Ticket extends AppCompatActivity {
 
     private void init()
     {
-        DataPostoju = (TextView)findViewById(R.id.DataPostoju);
-        DataPostoju.setText(date);
+        textOfDateOfParking = (TextView)findViewById(R.id.DataPostoju);
+        textOfDateOfParking.setText(date);
 
-        CzasPostoju = (TextView)findViewById(R.id.CzasPostoju);
-        CzasPostoju.setText(time);
+        textOfTimeOfParking = (TextView)findViewById(R.id.CzasPostoju);
+        textOfTimeOfParking.setText(time);
 
-        Payment = (TextView)findViewById(R.id.Oplata);
-        Payment.setText(money + " PLN");
+        textOfPayment = (TextView)findViewById(R.id.Oplata);
+        textOfPayment.setText(money + " PLN");
 
-        DataWydruku = (TextView)findViewById(R.id.DataRozp);
-        DataWydruku.setText(currentDate);
+        textOfPrintDate = (TextView)findViewById(R.id.DataRozp);
+        textOfPrintDate.setText(currentDate);
 
-        CzasWydruku = (TextView)findViewById(R.id.CzasRozp);
-        CzasWydruku.setText(currentTime);
+        textOfPrintTime = (TextView)findViewById(R.id.CzasRozp);
+        textOfPrintTime.setText(currentTime);
 
-        NumerRejestracyjny = (TextView)findViewById(R.id.NumerRejestr);
-        NumerRejestracyjny.setText(Numer);
+        textOfRegistrationNumber = (TextView)findViewById(R.id.NumerRejestr);
+        textOfRegistrationNumber.setText(registrationNumber);
 
 
-        theEnd = (Button) findViewById(R.id.TheEnd);
-        theEnd.setOnClickListener(new View.OnClickListener() {
+        buttonOfTheEndOfProgram = (Button) findViewById(R.id.TheEnd);
+        buttonOfTheEndOfProgram.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
@@ -108,7 +108,7 @@ public class Ticket extends AppCompatActivity {
     }
     public static void setNumber(String numer)
     {
-        Numer = numer;
+        registrationNumber = numer;
     }
 
 

@@ -1,58 +1,58 @@
 package com.example.parkomat;
 
 public class Vehicle {
-    private String nr_rej;
-    private int godzina;
-    private int minuta;
-    private float oplata;
-    private String data;
+    private String registrationNumber;
+    private int hour;
+    private int minute;
+    private float payment;
+    private String date;
 
-    public Vehicle(String nr, int h, int min, float cena, String data) {
-        this.nr_rej = nr;
-        this.godzina = h;
-        this.minuta = min;
-        this.oplata = cena;
-        this.data = data;
+    public Vehicle(String registrationNumber, int hour, int minute, float payment, String date) {
+        this.registrationNumber = registrationNumber;
+        this.hour = hour;
+        this.minute = minute;
+        this.payment = payment;
+        this.date = date;
     }
 
-    public String getNr_rej() {
-        return nr_rej;
+    public String getRegistrationNumber() {
+        return registrationNumber;
     }
 
-    public void setNr_rej(String nr_rej) {
-        this.nr_rej = nr_rej;
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 
-    public void setOplata(float cena) {
-        this.oplata = cena;
+    public void setPayment(float cena) {
+        this.payment = cena;
     }
 
-    public float getOplata() {
-        return oplata;
+    public float getPayment() {
+        return payment;
     }
 
-    public int getGodzina() {
-        return godzina;
+    public int getHour() {
+        return hour;
     }
 
-    public void setGodzina(int godzina) {
-        this.godzina = godzina;
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 
-    public int getMinuta() {
-        return minuta;
+    public int getMinute() {
+        return minute;
     }
 
-    public void setMinuta(int minuta) {
-        this.minuta = minuta;
+    public void setMinute(int minute) {
+        this.minute = minute;
     }
 
-    public String getData() {
-        return data;
+    public String getDate() {
+        return date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDate(String date) {
+        this.date = date;
     }
 
 

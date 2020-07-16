@@ -12,7 +12,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Monety extends AppCompatActivity {
+public class Cash extends AppCompatActivity {
 
     // Opłata za parking
     AutoCompleteTextView oplata;

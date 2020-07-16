@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                Intent payment = new Intent(MainActivity.this, Monety.class);
-                Monety.setMoney(howMuchToPay());
+                Intent payment = new Intent(MainActivity.this, Cash.class);
+                Cash.setMoney(howMuchToPay());
                 whichDate();
-                Monety.setDate(Date);
-                Monety.setTime(ileCzasu());
+                Cash.setDate(Date);
+                Cash.setTime(ileCzasu());
                 startActivity(payment);
 
             }
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
             for (Vehicle i : pojazdy) {
 
                 //sprawdzanie daty
-                String data = i.getData();
+                String data = i.getDate();
                 String[] date = data.split(".");
                 int dzien = Integer.parseInt(date[0]);
                 int miesiac = Integer.parseInt(date[1]);
@@ -242,8 +242,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (rok == year && miesiac == month && dzien == day) {
-                    int godzina = i.getGodzina();
-                    int minuta = i.getMinuta();
+                    int godzina = i.getHour();
+                    int minuta = i.getMinute();
 
                     int hour = c.get(Calendar.HOUR);
                     int minute = c.get(Calendar.MINUTE);

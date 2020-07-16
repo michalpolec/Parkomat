@@ -31,39 +31,39 @@ public class Cash extends AppCompatActivity {
     Button buttonOfRefund;
     Button buttonOfCancelPayment;
 
-    static String money = "0.00";
-    static String time = "00:00";
-    static String date = "00.00.0000";
-    static String kasaPoczątkowa;
-    double Wplata = 0.0;
-    static boolean oplataDokonana = false;
+    static String leftToPay = "0.00";
+    static String timeOfParking = "00:00";
+    static String dateOfParking = "00.00.0000";
+    static String initialCheckout;
+    double moneyThrownIn = 0.0;
+    static boolean wasThePaymentMade = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monety);
         viewOfTicketFee = findViewById(R.id.kosztPostoju);
-        viewOfTicketFee.setText(money);
+        viewOfTicketFee.setText(leftToPay);
 
         viewOfDate = findViewById(R.id.Data);
-        viewOfDate.setText(date);
+        viewOfDate.setText(dateOfParking);
 
         viewOfTime = findViewById(R.id.Czas);
-        viewOfTime.setText(time);
+        viewOfTime.setText(timeOfParking);
 
         init();
     }
 
     private void init()
     {
-            kasaPoczątkowa = money;
+            initialCheckout = leftToPay;
 
             coinOfTenGroszy = findViewById(R.id.dziesiecgr);
             coinOfTenGroszy.setOnClickListener(new View.OnClickListener() {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 0.10;
+                    moneyThrownIn = 0.10;
                     setOplata();
                 }
             });
@@ -72,7 +72,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 0.20;
+                    moneyThrownIn = 0.20;
                     setOplata();
                 }
             });
@@ -81,7 +81,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 0.50;
+                    moneyThrownIn = 0.50;
                     setOplata();
                 }
             });
@@ -90,7 +90,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 1.00;
+                    moneyThrownIn = 1.00;
                     setOplata();
                 }
             });
@@ -99,7 +99,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 2.00;
+                    moneyThrownIn = 2.00;
                     setOplata();
                 }
             });
@@ -108,7 +108,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 5.00;
+                    moneyThrownIn = 5.00;
                     setOplata();
                 }
             });
@@ -117,7 +117,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 10.00;
+                    moneyThrownIn = 10.00;
                     setOplata();
                 }
             });
@@ -126,7 +126,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 20.00;
+                    moneyThrownIn = 20.00;
                     setOplata();
                 }
             });
@@ -135,7 +135,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    Wplata = 50.00;
+                    moneyThrownIn = 50.00;
                     setOplata();
                 }
             });
@@ -144,7 +144,7 @@ public class Cash extends AppCompatActivity {
                 @RequiresApi(api = Build.VERSION_CODES.M)
                 @Override
                 public void onClick(View v) {
-                    viewOfTicketFee.setText(kasaPoczątkowa);
+                    viewOfTicketFee.setText(initialCheckout);
                 }
             });
             buttonOfCancelPayment = findViewById(R.id.cancel);
@@ -157,26 +157,26 @@ public class Cash extends AppCompatActivity {
             });
     }
 
-    public static void setMoney(String oplata)
+    public static void setLeftToPay(String oplata)
     {
-        money = oplata;
+        leftToPay = oplata;
     }
 
     private void setOplata()
     {
 
         double zloty;
-        zloty = Double.parseDouble(money);
-        zloty= (zaokraglanie(zloty)) - (zaokraglanie(Wplata));
+        zloty = Double.parseDouble(leftToPay);
+        zloty= (roundingNumbers(zloty)) - (roundingNumbers(moneyThrownIn));
 
         if (zloty <= 0)
         {
             zloty *= -1;
 
-            money = zaokraglanie(zloty) + "0";
+            leftToPay = roundingNumbers(zloty) + "0";
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Płatność");
-            builder.setMessage("Płatność została dokonana. Reszta: " + money + " Złotych");
+            builder.setMessage("Płatność została dokonana. Reszta: " + leftToPay + " Złotych");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -184,28 +184,28 @@ public class Cash extends AppCompatActivity {
                 }
             });
 
-            oplataDokonana = true;
-            MainActivity.enablePrintButton(oplataDokonana);
+            wasThePaymentMade = true;
+            MainActivity.enablePrintButton(wasThePaymentMade);
 
             builder.show();
 
         }
         else {
-            money = zaokraglanie(zloty) + "0";
-            viewOfTicketFee.setText(money);
+            leftToPay = roundingNumbers(zloty) + "0";
+            viewOfTicketFee.setText(leftToPay);
         }
     }
 
-    public static void setTime(String czas)
+    public static void setTimeOfParking(String czas)
     {
-        time = czas;
+        timeOfParking = czas;
     }
-    public static void setDate(String data)
+    public static void setDateOfParking(String data)
     {
-        date = data;
+        dateOfParking = data;
     }
 
-    public double zaokraglanie(double liczba)
+    public double roundingNumbers(double liczba)
     {
         liczba *= 100;
         liczba = Math.round(liczba);

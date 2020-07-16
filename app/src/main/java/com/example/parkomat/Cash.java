@@ -69,7 +69,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 0.10;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             coinOfTwentyGroszy = findViewById(R.id.dwadziesciagr);
@@ -78,7 +78,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 0.20;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             coinOfFiftyGroszy = findViewById(R.id.piedzesiatgr);
@@ -87,7 +87,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 0.50;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             coinOfOneZloty = findViewById(R.id.jedenpln);
@@ -96,7 +96,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 1.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             coinOfTwoZloty = findViewById(R.id.dwapln);
@@ -105,7 +105,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 2.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             coinOfFiveZloty = findViewById(R.id.piecpln);
@@ -114,7 +114,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 5.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             banknoteOfTenZloty = findViewById(R.id.dziesiecpln);
@@ -123,7 +123,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 10.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             banknoteOfTwentyZloty = findViewById(R.id.dwadziesciapln);
@@ -132,7 +132,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 20.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             banknoteOfFiftyZloty = findViewById(R.id.piedziesiatpln);
@@ -141,7 +141,7 @@ public class Cash extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     moneyThrownIn = 50.00;
-                    setOplata();
+                    setAmountToPay();
                 }
             });
             buttonOfRefund = findViewById(R.id.change);
@@ -164,18 +164,17 @@ public class Cash extends AppCompatActivity {
 
 
 
-    private void setOplata()
+    private void setAmountToPay()
     {
 
-        double zloty;
-        zloty = Double.parseDouble(leftToPayAndRestOfMoney);
-        zloty= (roundingNumbers(zloty)) - (roundingNumbers(moneyThrownIn));
+        double leftToPayAndRest;
+        leftToPayAndRest = Double.parseDouble(leftToPayAndRestOfMoney);
+        leftToPayAndRest= (roundingNumbers(leftToPayAndRest)) - (roundingNumbers(moneyThrownIn));
 
-        if (zloty <= 0)
+        if (leftToPayAndRest <= 0)
         {
-            zloty *= -1;
-
-            leftToPayAndRestOfMoney = roundingNumbers(zloty) + "0";
+            leftToPayAndRest *= -1;
+            leftToPayAndRestOfMoney = roundingNumbers(leftToPayAndRest) + "0";
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Płatność");
             builder.setMessage("Płatność została dokonana. Reszta: " + leftToPayAndRestOfMoney + " Złotych");
@@ -193,7 +192,7 @@ public class Cash extends AppCompatActivity {
 
         }
         else {
-            leftToPayAndRestOfMoney = roundingNumbers(zloty) + "0";
+            leftToPayAndRestOfMoney = roundingNumbers(leftToPayAndRest) + "0";
             viewOfTicketFee.setText(leftToPayAndRestOfMoney);
         }
     }

@@ -31,7 +31,7 @@ public class Cash extends AppCompatActivity {
     Button buttonOfRefund;
     Button buttonOfCancelPayment;
 
-    static String leftToPay = "0.00";
+    static String leftToPayAndRestOfMoney = "0.00";
     static String timeOfParking = "00:00";
     static String dateOfParking = "00.00.0000";
     static String initialCheckout;
@@ -43,7 +43,7 @@ public class Cash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_monety);
         viewOfTicketFee = findViewById(R.id.kosztPostoju);
-        viewOfTicketFee.setText(leftToPay);
+        viewOfTicketFee.setText(leftToPayAndRestOfMoney);
 
         viewOfDate = findViewById(R.id.Data);
         viewOfDate.setText(dateOfParking);
@@ -54,9 +54,14 @@ public class Cash extends AppCompatActivity {
         init();
     }
 
+    public static void setLeftToPayAndRestOfMoney(String ticketFee)
+    {
+        leftToPayAndRestOfMoney = ticketFee;
+    }
+
     private void init()
     {
-            initialCheckout = leftToPay;
+            initialCheckout = leftToPayAndRestOfMoney;
 
             coinOfTenGroszy = findViewById(R.id.dziesiecgr);
             coinOfTenGroszy.setOnClickListener(new View.OnClickListener() {
@@ -157,26 +162,23 @@ public class Cash extends AppCompatActivity {
             });
     }
 
-    public static void setLeftToPay(String oplata)
-    {
-        leftToPay = oplata;
-    }
+
 
     private void setOplata()
     {
 
         double zloty;
-        zloty = Double.parseDouble(leftToPay);
+        zloty = Double.parseDouble(leftToPayAndRestOfMoney);
         zloty= (roundingNumbers(zloty)) - (roundingNumbers(moneyThrownIn));
 
         if (zloty <= 0)
         {
             zloty *= -1;
 
-            leftToPay = roundingNumbers(zloty) + "0";
+            leftToPayAndRestOfMoney = roundingNumbers(zloty) + "0";
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Płatność");
-            builder.setMessage("Płatność została dokonana. Reszta: " + leftToPay + " Złotych");
+            builder.setMessage("Płatność została dokonana. Reszta: " + leftToPayAndRestOfMoney + " Złotych");
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -191,8 +193,8 @@ public class Cash extends AppCompatActivity {
 
         }
         else {
-            leftToPay = roundingNumbers(zloty) + "0";
-            viewOfTicketFee.setText(leftToPay);
+            leftToPayAndRestOfMoney = roundingNumbers(zloty) + "0";
+            viewOfTicketFee.setText(leftToPayAndRestOfMoney);
         }
     }
 

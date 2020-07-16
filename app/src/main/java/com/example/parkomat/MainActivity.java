@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent payment = new Intent(MainActivity.this, Cash.class);
-                Cash.setLeftToPay(howMuchToPay());
+                Cash.setLeftToPayAndRestOfMoney(howMuchToPay());
                 whichDate();
                 Cash.setDateOfParking(Date);
                 Cash.setTimeOfParking(ileCzasu());

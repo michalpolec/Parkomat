@@ -4,10 +4,10 @@ public class Vehicle {
     private String registrationNumber;
     private int hour;
     private int minute;
-    private float payment;
     private String date;
+    private Double payment; //zmienić na double
 
-    public Vehicle(String registrationNumber, int hour, int minute, float payment, String date) {
+    public Vehicle(String registrationNumber, int hour, int minute, Double payment, String date) {
         this.registrationNumber = registrationNumber;
         this.hour = hour;
         this.minute = minute;
@@ -23,11 +23,11 @@ public class Vehicle {
         this.registrationNumber = registrationNumber;
     }
 
-    public void setPayment(float cena) {
+    public void setPayment(Double cena) {
         this.payment = cena;
     }
 
-    public float getPayment() {
+    public Double getPayment() {
         return payment;
     }
 

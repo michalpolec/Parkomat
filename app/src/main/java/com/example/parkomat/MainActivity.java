@@ -24,7 +24,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
     private String currentDate;
     private String Date;
 
+    Logger logger = Logger.getLogger(MainActivity.class.getName());
+
     MainSQLiteDBHelper dbHelper;
+    SQLiteDatabase db;
 
     public void init() {
         anuluj = findViewById(R.id.cancel);
@@ -109,62 +114,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
         dbHelper = new MainSQLiteDBHelper(getApplicationContext());
+        db = dbHelper.getWritableDatabase();
 
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
         dbHelper.onCreate(db);
-        dbHelper.onUpgrade(db, 2, 3);
+//        dbHelper.onUpgrade(db, 2, 3);
 
-        ContentValues values = new ContentValues();
-        values.put(MainSQLiteDBHelper.VEHICLE_COLUMN_NR, "TOP01EA");
-        values.put(MainSQLiteDBHelper.VEHICLE_COLUMN_DATE, "1000-01-01 00:00:00");
-        values.put(MainSQLiteDBHelper.VEHICLE_COLUMN_COST, 2.00);
-
-        long newRowId = db.insert(dbHelper.VEHICLE_TABLE_NAME, null, values);
-//        String test = "Dodano " + newRowId;
-
-//        String[] projection = {
-//                dbHelper.VEHICLE_COLUMN_ID,
-//                dbHelper.VEHICLE_COLUMN_NR,
-//                dbHelper.VEHICLE_COLUMN_DATE,
-//                dbHelper.VEHICLE_COLUMN_COST
-//        };
-
-//        String selection = MainSQLiteDBHelper.VEHICLE_COLUMN_ID + " like ?";
-//        String[] selectionArgs = {"%" + 1};
-//
-//        Cursor cursor = db.query(
-//                dbHelper.VEHICLE_TABLE_NAME,
-//                projection,
-//                selection,
-//                selectionArgs,
-//                null,
-//                null,
-//                null
-//        );
-
-//        Log.d("TAG", "The total cursor count is " + cursor.getCount());
-//
-//        List itemIds = new ArrayList<>();
-//        while(cursor.moveToNext()) {
-//            long itemId = cursor.getLong(
-//                    cursor.getColumnIndexOrThrow(MainSQLiteDBHelper.VEHICLE_COLUMN_ID));
-//            itemIds.add(itemId);
-//        }
-//        cursor.close();
-//
-//        for (int i = 0; i<itemIds.size(); i++) {
-//            System.out.println("------ " + itemIds.get(i));
-//        }
-//
-//        System.out.println("------------------Test--------------------");
-
-
-        Cursor res = dbHelper.getData(1);
-        String nr = res.getString(res.getColumnIndex(MainSQLiteDBHelper.VEHICLE_COLUMN_NR));
-        String date = res.getString(res.getColumnIndex(MainSQLiteDBHelper.VEHICLE_COLUMN_DATE));
-        Double cost = res.getDouble(res.getColumnIndex(MainSQLiteDBHelper.VEHICLE_COLUMN_COST));
-
-        System.out.println("Result: " + nr + " " + date + " " + cost);
+        //odczyt wszystkich danych z bazy
+        List<Vehicle> vehicles = dbHelper.getAllData(db);
+        for(Vehicle vehicle : vehicles){
+            System.out.println("Result: " + vehicle.getRegistrationNumber() + " " + vehicle.getHour() + ":" + vehicle.getMinute() + " " + vehicle.getMinute() + " " + vehicle.getPayment());
+        }
     }
 
     // Funckja odpowiadajaca za przycicisk drukuj, bedzie dodawac pojazdy do listy
@@ -179,7 +138,10 @@ public class MainActivity extends AppCompatActivity {
 
         String cena = String.valueOf(oplaty.getText());
 
-        Vehicle px = new Vehicle(numer, Integer.parseInt(hour), Integer.parseInt(minutes), Float.parseFloat(cena), Date);
+        Vehicle px = new Vehicle(numer, Integer.parseInt(hour), Integer.parseInt(minutes), Double.parseDouble(cena), Date);
+
+        //zapis do bazy
+        dbHelper.insertData(db, px);
 
         pojazdy.add(px);
         saveToFile();
@@ -286,7 +248,8 @@ public class MainActivity extends AppCompatActivity {
         try {
             init();
         } catch (Exception e) {
-            System.out.println("Bład podczas dokonywania opłaty");
+//            System.out.println("Bład podczas dokonywania opłaty");
+            e.printStackTrace();
         }
 
         picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {

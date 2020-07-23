@@ -144,41 +144,10 @@ public class MainActivity extends AppCompatActivity {
         dbHelper.insertData(db, px);
 
         pojazdy.add(px);
-        saveToFile();
-    }
-
-    //zapisywanie do pliku
-    public void saveToFile() {
-        String pathFile = "C:/parkomat";
-        File plik = new File(pathFile + "/plik.txt");
-
-        if (!pojazdy.isEmpty()) {
-            try {
-                ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(plik));
-                outputStream.writeObject(pojazdy);
-                outputStream.close();
-            } catch (IOException ex) {
-                System.out.println("Wystąpił błąd zapisu");
-                ex.printStackTrace();
-            }
-        }
-    }
-
-    public void readFromFile() {
-        try {
-            FileInputStream os = new FileInputStream("C:\\parkomat\\plik.txt");
-            ObjectInputStream inputStream = new ObjectInputStream(os);
-            pojazdy = (Set<Vehicle>) inputStream.readObject();
-            inputStream.close();
-        } catch (Exception ex) {
-            System.out.println("Wystąpił błąd odczytu");
-            ex.printStackTrace();
-        }
     }
 
     private void checkVehicle() {
 
-        readFromFile();
         if (!pojazdy.isEmpty()) {
             for (Vehicle i : pojazdy) {
 
@@ -222,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void deleteVehicle() throws IOException {
         pojazdy.removeAll(doUsuniecia);
-        saveToFile();
     }
 
 

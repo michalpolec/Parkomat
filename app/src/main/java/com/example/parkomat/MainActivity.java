@@ -1,9 +1,7 @@
 package com.example.parkomat;
 
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,12 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -31,9 +24,8 @@ import java.util.logging.Logger;
 public class MainActivity extends AppCompatActivity {
 
 
-    Set<Vehicle> pojazdy = new HashSet<>();
-
-    Set<Vehicle> doUsuniecia = new HashSet<>();
+    Set<Vehicle> vehiclesWithValidTicket = new HashSet<>();
+    Set<Vehicle> vehiclesWithInvalidTicket = new HashSet<>();
 
     static public TimePicker picker;
     AutoCompleteTextView godzinaDo; //godzina
@@ -140,20 +132,23 @@ public class MainActivity extends AppCompatActivity {
 
         Vehicle px = new Vehicle(numer, Integer.parseInt(hour), Integer.parseInt(minutes), Double.parseDouble(cena), Date);
 
+
         //zapis do bazy
         dbHelper.insertData(db, px);
-
-        pojazdy.add(px);
+        vehiclesWithValidTicket.add(px);
+        checkVehicle();
     }
 
     private void checkVehicle() {
 
-        if (!pojazdy.isEmpty()) {
-            for (Vehicle i : pojazdy) {
+        if (!vehiclesWithValidTicket.isEmpty()) {
+            for (Vehicle i : vehiclesWithValidTicket) {
 
                 //sprawdzanie daty
                 String data = i.getDate();
-                String[] date = data.split(".");
+                String Date = data.replace(".", " ");
+
+                String[] date = Date.split(" ");
                 int dzien = Integer.parseInt(date[0]);
                 int miesiac = Integer.parseInt(date[1]);
                 int rok = Integer.parseInt(date[2]);
@@ -161,28 +156,33 @@ public class MainActivity extends AppCompatActivity {
                 Calendar c = Calendar.getInstance();
 
                 int year = c.get(Calendar.YEAR);
-                int month = c.get(Calendar.MONTH);
+                int month = c.get(Calendar.MONTH) + 1;
                 int day = c.get(Calendar.DAY_OF_MONTH);
 
                 if (rok < year) {
-                    doUsuniecia.add(i);
+                    vehiclesWithInvalidTicket.add(i);
+                    vehiclesWithValidTicket.remove(i);
                 } else if (miesiac < month) {
-                    doUsuniecia.add(i);
+                    vehiclesWithInvalidTicket.add(i);
+                    vehiclesWithValidTicket.remove(i);
                 } else if (dzien < day) {
-                    doUsuniecia.add(i);
+                    vehiclesWithInvalidTicket.add(i);
+                    vehiclesWithValidTicket.remove(i);
                 }
 
                 if (rok == year && miesiac == month && dzien == day) {
                     int godzina = i.getHour();
                     int minuta = i.getMinute();
 
-                    int hour = c.get(Calendar.HOUR);
+                    int hour = c.get(Calendar.HOUR_OF_DAY);
                     int minute = c.get(Calendar.MINUTE);
 
                     if (godzina < hour) {
-                        doUsuniecia.add(i);
+                        vehiclesWithInvalidTicket.add(i);
+                        vehiclesWithValidTicket.remove(i);
                     } else if (minuta < minute) {
-                        doUsuniecia.add(i);
+                        vehiclesWithInvalidTicket.add(i);
+                        vehiclesWithValidTicket.remove(i);
                     }
                 }
             }
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteVehicle() throws IOException {
-        pojazdy.removeAll(doUsuniecia);
+        vehiclesWithValidTicket.removeAll(vehiclesWithInvalidTicket);
     }
 
 

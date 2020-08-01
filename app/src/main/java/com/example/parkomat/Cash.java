@@ -186,7 +186,7 @@ public class Cash extends AppCompatActivity {
             });
 
             wasThePaymentMade = true;
-            MainActivity.enablePrintButton(wasThePaymentMade);
+            MainScreen.enablePrintButton(wasThePaymentMade);
 
             builder.show();
 

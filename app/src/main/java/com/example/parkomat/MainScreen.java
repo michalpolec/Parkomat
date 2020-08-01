@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-public class MainActivity extends AppCompatActivity {
+public class MainScreen extends AppCompatActivity {
 
 
     Set<Vehicle> vehiclesWithValidTicket = new HashSet<>();
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private String currentDate;
     private String Date;
 
-    Logger logger = Logger.getLogger(MainActivity.class.getName());
+    Logger logger = Logger.getLogger(MainScreen.class.getName());
 
     MainSQLiteDBHelper dbHelper;
     SQLiteDatabase db;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                Intent payment = new Intent(MainActivity.this, Cash.class);
+                Intent payment = new Intent(MainScreen.this, Cash.class);
                 Cash.setLeftToPayAndRestOfMoney(howMuchToPay());
                 whichDate();
                 Cash.setDateOfParking(Date);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (whichNumber() == "error") {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainScreen.this);
                     builder.setTitle("Błąd");
                     builder.setMessage("Nie wpisano numeru rejestracji. Wpisz ją!");
                     builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     builder.show();
                 } else {
-                    Intent ticket = new Intent(MainActivity.this, Ticket.class);
+                    Intent ticket = new Intent(MainScreen.this, Ticket.class);
                     Ticket.setTicketFee(howMuchToPay());
                     Ticket.setTimeOfParking(ileCzasu());
                     Ticket.setCurrentTime(actualTime());

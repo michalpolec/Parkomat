@@ -109,13 +109,8 @@ public class MainScreen extends AppCompatActivity {
         db = dbHelper.getWritableDatabase();
 
         dbHelper.onCreate(db);
-//        dbHelper.onUpgrade(db, 2, 3);
 
-        //odczyt wszystkich danych z bazy
-        List<Vehicle> vehicles = dbHelper.getAllData(db);
-        for(Vehicle vehicle : vehicles){
-            System.out.println("Result: " + vehicle.getRegistrationNumber() + " " + vehicle.getHour() + ":" + vehicle.getMinute() + " " + vehicle.getMinute() + " " + vehicle.getPayment());
-        }
+
     }
 
     // Funckja odpowiadajaca za przycicisk drukuj, bedzie dodawac pojazdy do listy
@@ -132,11 +127,28 @@ public class MainScreen extends AppCompatActivity {
 
         Vehicle px = new Vehicle(numer, Integer.parseInt(hour), Integer.parseInt(minutes), Double.parseDouble(cena), Date);
 
-
         //zapis do bazy
         dbHelper.insertData(db, px);
-        vehiclesWithValidTicket.add(px);
+
+        //odczyt wszystkich danych z bazy
+        List<Vehicle> vehicles = dbHelper.getAllData(db);
+        for(Vehicle vehicle : vehicles){
+            vehiclesWithValidTicket.add(vehicle);
+        }
+
         checkVehicle();
+        deleteVehicle();
+        printVehcile();
+    }
+
+    private void printVehcile()
+    {
+        for(Vehicle vehicle : vehiclesWithInvalidTicket){
+            System.out.println(vehicle.getRegistrationNumber());
+        }
+        for(Vehicle vehicle : vehiclesWithValidTicket){
+            System.out.println(vehicle.getRegistrationNumber());
+        }
     }
 
     private void checkVehicle() {
@@ -161,13 +173,10 @@ public class MainScreen extends AppCompatActivity {
 
                 if (rok < year) {
                     vehiclesWithInvalidTicket.add(i);
-                    vehiclesWithValidTicket.remove(i);
                 } else if (miesiac < month) {
                     vehiclesWithInvalidTicket.add(i);
-                    vehiclesWithValidTicket.remove(i);
                 } else if (dzien < day) {
                     vehiclesWithInvalidTicket.add(i);
-                    vehiclesWithValidTicket.remove(i);
                 }
 
                 if (rok == year && miesiac == month && dzien == day) {
@@ -187,9 +196,10 @@ public class MainScreen extends AppCompatActivity {
                 }
             }
         }
+
     }
 
-    private void deleteVehicle() throws IOException {
+    private void deleteVehicle(){
         vehiclesWithValidTicket.removeAll(vehiclesWithInvalidTicket);
     }
 

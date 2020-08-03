@@ -138,18 +138,8 @@ public class MainScreen extends AppCompatActivity {
 
         checkVehicle();
         deleteVehicle();
-        printVehcile();
     }
 
-    private void printVehcile()
-    {
-        for(Vehicle vehicle : vehiclesWithInvalidTicket){
-            System.out.println(vehicle.getRegistrationNumber());
-        }
-        for(Vehicle vehicle : vehiclesWithValidTicket){
-            System.out.println(vehicle.getRegistrationNumber());
-        }
-    }
 
     private void checkVehicle() {
 
@@ -188,10 +178,8 @@ public class MainScreen extends AppCompatActivity {
 
                     if (godzina < hour) {
                         vehiclesWithInvalidTicket.add(i);
-                        vehiclesWithValidTicket.remove(i);
                     } else if (minuta < minute) {
                         vehiclesWithInvalidTicket.add(i);
-                        vehiclesWithValidTicket.remove(i);
                     }
                 }
             }

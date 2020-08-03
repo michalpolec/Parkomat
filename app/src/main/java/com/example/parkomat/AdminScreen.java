@@ -9,11 +9,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminScreen extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_screen);
-        //addVehicle();
+
+        System.out.println("Nieważne");
+        for(Vehicle vehicle : LoginActivity.vehiclesWithInvalidTicket){
+            System.out.println(vehicle.getRegistrationNumber());
+        }
+        System.out.println("Ważne");
+        for(Vehicle vehicle : LoginActivity.vehiclesWithValidTicket){
+            System.out.println(vehicle.getRegistrationNumber());
+        }
     }
 
     private void addEmployee()  {

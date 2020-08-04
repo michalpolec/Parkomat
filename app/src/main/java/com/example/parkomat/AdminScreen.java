@@ -112,7 +112,7 @@ public class AdminScreen extends AppCompatActivity {
     private void cleanTable(TableLayout table) {
         int childCount = table.getChildCount();
 
-        if (childCount > 1) {
+        if (childCount >= 1) {
             table.removeViews(0, childCount);
         }
     }

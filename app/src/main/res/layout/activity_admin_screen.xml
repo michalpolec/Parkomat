@@ -13,10 +13,10 @@
         android:text="Pojazdy z ważnym biletem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintHorizontal_bias="0.148"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.89" />
 
     <Button
         android:id="@+id/invalidVehicle"
@@ -25,10 +25,10 @@
         android:text="Pojazdy z nieważnym biletem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
+        app:layout_constraintVertical_bias="0.89" />
 
     <TextView
         android:id="@+id/titleOfTable"
@@ -42,15 +42,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:id="@+id/table_layout"
-        android:layout_width="377dp"
-        android:layout_height="449dp"
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="342dp"
+        android:layout_height="261dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.308"/>
+        app:layout_constraintVertical_bias="0.444">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/table_layout"
+                android:layout_width="400dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TableRow
+        android:layout_width="337dp"
+        android:layout_height="38dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleOfTable"
+        app:layout_constraintVertical_bias="0.843" >
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
+            android:text="Numer rejestracyjny"
+            android:textColor="#3477EB" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="95dp"
+            android:layout_height="match_parent"
+            android:text="Godzina"
+            android:textAllCaps="false"
+            android:textColor="#3477EB" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="101dp"
+            android:layout_height="match_parent"
+            android:text="Data"
+            android:textColor="#3477EB" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Koszt"
+            android:textColor="#3477EB" />
+    </TableRow>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

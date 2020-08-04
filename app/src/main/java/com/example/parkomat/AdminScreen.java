@@ -33,7 +33,7 @@ public class AdminScreen extends AppCompatActivity {
         validVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableWithVehicles.clearDisappearingChildren();
+                cleanTable(tableWithVehicles);
                 titleOfTable.setText("Pojazdy z ważnym biletem.");
                 if (!LoginActivity.vehiclesWithValidTicket.isEmpty()) {
                     for (Vehicle vehicle : LoginActivity.vehiclesWithValidTicket) {
@@ -72,7 +72,7 @@ public class AdminScreen extends AppCompatActivity {
         invalidVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableWithVehicles.clearDisappearingChildren();
+                cleanTable(tableWithVehicles);
                 titleOfTable.setText("Pojazdy z nieważnym biletem.");
                 if (!LoginActivity.vehiclesWithInvalidTicket.isEmpty()) {
                     for (Vehicle vehicle : LoginActivity.vehiclesWithInvalidTicket) {
@@ -109,5 +109,11 @@ public class AdminScreen extends AppCompatActivity {
         });
 
     }
+    private void cleanTable(TableLayout table) {
+        int childCount = table.getChildCount();
 
+        if (childCount > 1) {
+            table.removeViews(0, childCount);
+        }
+    }
 }

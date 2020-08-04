@@ -6,111 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".AdminScreen">
 
-    <TableLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/table_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </TableLayout>
-
     <Button
         android:id="@+id/validVehicle"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="388dp"
         android:text="Pojazdy z ważnym biletem"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/invalidVehicle"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.862" />
 
     <Button
         android:id="@+id/invalidVehicle"
         android:layout_width="150dp"
         android:layout_height="75dp"
-        android:layout_marginTop="236dp"
         android:text="Pojazdy z nieważnym biletem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.607" />
-
-    <TableRow
-        android:id="@+id/table_row1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161">
-
-        <TextView
-            android:id="@+id/number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="serif"
-            android:text="Numer rejestracyjny"
-            android:textColor="#000" />
-
-        <TextView
-            android:id="@+id/hour"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="serif"
-            android:text="Godzina"
-            android:textColor="#000" />
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="serif"
-            android:text="Data"
-            android:textColor="#000" />
-
-        <TextView
-            android:id="@+id/payment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:fontFamily="serif"
-            android:text="Opłata"
-            android:textColor="#000" />
-
-    </TableRow>
-
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="3dip"
-        android:background="#3477EB"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/table_row1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.862" />
 
     <TextView
         android:id="@+id/titleOfTable"
         android:layout_width="348dp"
         android:layout_height="41dp"
+        android:layout_marginTop="28dp"
         android:textColor="#3477EB"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/table_row1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="377dp"
+        android:layout_height="449dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

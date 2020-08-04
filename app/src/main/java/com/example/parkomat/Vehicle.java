@@ -5,7 +5,7 @@ public class Vehicle {
     private int hour;
     private int minute;
     private String date;
-    private Double payment; //zmienić na double
+    private Double payment;
 
     public Vehicle(String registrationNumber, int hour, int minute, Double payment, String date) {
         this.registrationNumber = registrationNumber;

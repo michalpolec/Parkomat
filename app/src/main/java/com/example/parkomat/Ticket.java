@@ -41,26 +41,26 @@ public class Ticket extends AppCompatActivity {
 
     private void init()
     {
-        viewOfDateOfParking = (TextView)findViewById(R.id.DataPostoju);
+        viewOfDateOfParking = findViewById(R.id.DataPostoju);
         viewOfDateOfParking.setText(dateOfParking);
 
-        viewOfTimeOfParking = (TextView)findViewById(R.id.CzasPostoju);
+        viewOfTimeOfParking = findViewById(R.id.CzasPostoju);
         viewOfTimeOfParking.setText(timeOfParking);
 
-        viewOfTicketFee = (TextView)findViewById(R.id.Oplata);
+        viewOfTicketFee = findViewById(R.id.Oplata);
         viewOfTicketFee.setText(ticketFee + " PLN");
 
-        viewOfPrintDate = (TextView)findViewById(R.id.DataRozp);
+        viewOfPrintDate = findViewById(R.id.DataRozp);
         viewOfPrintDate.setText(currentDate);
 
-        viewOfPrintTime = (TextView)findViewById(R.id.CzasRozp);
+        viewOfPrintTime = findViewById(R.id.CzasRozp);
         viewOfPrintTime.setText(currentTime);
 
-        viewOfRegistrationNumber = (TextView)findViewById(R.id.NumerRejestr);
+        viewOfRegistrationNumber = findViewById(R.id.NumerRejestr);
         viewOfRegistrationNumber.setText(registrationNumber);
 
 
-        buttonOfTheEndOfProgram = (Button) findViewById(R.id.TheEnd);
+        buttonOfTheEndOfProgram = findViewById(R.id.TheEnd);
         buttonOfTheEndOfProgram.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override

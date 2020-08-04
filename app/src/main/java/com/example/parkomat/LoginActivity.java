@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         try {
             init();
         } catch (Exception e) {
-//            System.out.println("Bład podczas dokonywania opłaty");
             e.printStackTrace();
         }
 
@@ -99,7 +98,6 @@ public class LoginActivity extends AppCompatActivity {
         if (!vehiclesWithValidTicket.isEmpty()) {
             for (Vehicle i : vehiclesWithValidTicket) {
 
-                //sprawdzanie daty
                 String data = i.getDate();
                 String Date = data.replace(".", " ");
 

@@ -2,7 +2,6 @@ package com.example.parkomat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,21 +13,14 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.IOException;
 import java.util.Calendar;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 public class MainScreen extends AppCompatActivity {
 
-
-
-
     static public TimePicker picker;
-    AutoCompleteTextView godzinaDo; //godzina
-    AutoCompleteTextView oplaty; //tu pole oplaty
+    AutoCompleteTextView godzinaDo;
+    AutoCompleteTextView oplaty;
     public AutoCompleteTextView nr;
 
     static public Button pay;
@@ -90,7 +82,7 @@ public class MainScreen extends AppCompatActivity {
                     Intent ticket = new Intent(MainScreen.this, Ticket.class);
                     Ticket.setTicketFee(howMuchToPay());
                     Ticket.setTimeOfParking(ileCzasu());
-                    Ticket.setCurrentTime(actualTime());
+                    Ticket.setCurrentTime(currentTime());
                     Ticket.setCurrentDate(currentDate);
                     Ticket.setDateOfParking(Date);
                     Ticket.setNumber(whichNumber());
@@ -103,24 +95,19 @@ public class MainScreen extends AppCompatActivity {
         });
     }
 
-    // Funckja odpowiadajaca za przycicisk drukuj, bedzie dodawac pojazdy do listy
     public void addVehicle() {
-        String numer = whichNumber();
+        String registrationNumber = whichNumber();
         String czas = String.valueOf(godzinaDo.getText());
 
-        //teraz rozdzialanie godzin od minut
         String[] time = czas.split(":");
         String hour = time[0];
         String minutes = time[1];
 
         String cena = String.valueOf(oplaty.getText());
 
-        Vehicle px = new Vehicle(numer, Integer.parseInt(hour), Integer.parseInt(minutes), Double.parseDouble(cena), Date);
+        Vehicle px = new Vehicle(registrationNumber, Integer.parseInt(hour), Integer.parseInt(minutes), Double.parseDouble(cena), Date);
 
-        //zapis do bazy
         LoginActivity.dbHelper.insertData(LoginActivity.db, px);
-
-        //odczyt wszystkich danych z bazy
 
 
         LoginActivity.checkVehicle();
@@ -135,15 +122,11 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //to do gory musi byc zawsze zeby dzialalo
 
-        //PrimeThread p = new PrimeThread();
-
-
-        oplaty = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView2);
-        godzinaDo = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView3);
-        nr = (AutoCompleteTextView) findViewById(R.id.nrText);
-        picker = (TimePicker) findViewById(R.id.timePicker1);
+        oplaty = findViewById(R.id.autoCompleteTextView2);
+        godzinaDo = findViewById(R.id.autoCompleteTextView3);
+        nr = findViewById(R.id.nrText);
+        picker = findViewById(R.id.timePicker1);
 
         picker.setIs24HourView(true);
         picker.setHour(0);
@@ -152,7 +135,6 @@ public class MainScreen extends AppCompatActivity {
         try {
             init();
         } catch (Exception e) {
-//            System.out.println("Bład podczas dokonywania opłaty");
             e.printStackTrace();
         }
 
@@ -164,17 +146,14 @@ public class MainScreen extends AppCompatActivity {
 
             }
         });
-        //uruchomienie watku
-        //p.start();
     }
 
-    //bedzie ustawiac czas, do ktorego jest oplacone parkowanie
     @RequiresApi(api = Build.VERSION_CODES.M)
     private String ileCzasu() {
         String napis;
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minutes = c.get(Calendar.MINUTE);
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
 
         int godzina = picker.getHour();
         int minuty = picker.getMinute();
@@ -204,69 +183,69 @@ public class MainScreen extends AppCompatActivity {
         return napis;
     }
 
-    private String actualTime() {
+    private String currentTime() {
 
-        String czas;
-        Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minutes = c.get(Calendar.MINUTE);
+        String whatTime;
+        Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minutes = calendar.get(Calendar.MINUTE);
 
         if (hour < 10 && minutes < 10) {
-            czas = "0" + hour + ":0" + minutes;
+            whatTime = "0" + hour + ":0" + minutes;
         } else if (hour < 10) {
-            czas = "0" + hour + ":" + minutes;
+            whatTime = "0" + hour + ":" + minutes;
         } else if (minutes < 10) {
-            czas = hour + ":0" + minutes;
-        } else czas = hour + ":" + minutes;
+            whatTime = hour + ":0" + minutes;
+        } else whatTime = hour + ":" + minutes;
 
-        return czas;
+        return whatTime;
     }
 
-    //tu bedzie ustawialo ile trzeba zaplacic zaleznie od godziny
+    
     @RequiresApi(api = Build.VERSION_CODES.M)
     private String howMuchToPay() {
-        String cena;
-        int godzina = picker.getHour();
-        int minuty = picker.getMinute();
-        if (godzina == 0) {
-            if (minuty <= 30) {
-                cena = "1";
-            } else cena = "2";
-        } else if (godzina == 1) {
-            if (minuty > 0) {
-                cena = "6.60";
-            } else cena = "3";
-        } else if (godzina == 2) {
-            if (minuty > 0) {
-                cena = "10.80";
-            } else cena = "6.60";
-        } else if (godzina == 3) {
-            if (minuty > 0) {
-                cena = "13.80";
-            } else cena = "10.80";
+        String whatPrice;
+        int hour = picker.getHour();
+        int minutes = picker.getMinute();
+        if (hour == 0) {
+            if (minutes <= 30) {
+                whatPrice = "1";
+            } else whatPrice = "2";
+        } else if (hour == 1) {
+            if (minutes > 0) {
+                whatPrice = "6.60";
+            } else whatPrice = "3";
+        } else if (hour == 2) {
+            if (minutes > 0) {
+                whatPrice = "10.80";
+            } else whatPrice = "6.60";
+        } else if (hour == 3) {
+            if (minutes > 0) {
+                whatPrice = "13.80";
+            } else whatPrice = "10.80";
         } else {
             int x = 3;
-            cena = (x * (godzina - 3)) + 10.80 + "0";
+            whatPrice = (x * (hour - 3)) + 10.80 + "0";
         }
-        return cena;
+        return whatPrice;
     }
 
     private String whichNumber() {
 
-        String Numer;
-        Numer = String.valueOf(nr.getText());
-        Numer = Numer.toUpperCase();
-        if (Numer.length() == 0) {
+        String registrationNumber;
+        registrationNumber = String.valueOf(nr.getText());
+        registrationNumber = registrationNumber.toUpperCase();
+        if (registrationNumber.length() == 0) {
             return "error";
         } else {
-            return Numer;
+            return registrationNumber;
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean isItAnotherDay() {
-        Calendar c = Calendar.getInstance();
-        int calendarHour = c.get(Calendar.HOUR_OF_DAY);
+        Calendar calendar = Calendar.getInstance();
+        int calendarHour = calendar.get(Calendar.HOUR_OF_DAY);
         int pickerHour = picker.getHour();
         int day = (calendarHour + pickerHour) / 24;
 

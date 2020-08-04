@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 public class Cash extends AppCompatActivity {
 
-    // Opłata za parking
     AutoCompleteTextView viewOfTicketFee;
     TextView viewOfDate;
     TextView viewOfTime;
@@ -162,11 +161,8 @@ public class Cash extends AppCompatActivity {
             });
     }
 
-
-
     private void setAmountToPay()
     {
-
         double leftToPayAndRest;
         leftToPayAndRest = Double.parseDouble(leftToPayAndRestOfMoney);
         leftToPayAndRest= (roundingNumbers(leftToPayAndRest)) - (roundingNumbers(moneyThrownIn));

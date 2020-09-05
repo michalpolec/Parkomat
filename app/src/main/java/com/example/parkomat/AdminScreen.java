@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class AdminScreen extends AppCompatActivity {
@@ -42,9 +43,13 @@ public class AdminScreen extends AppCompatActivity {
                         TableRow newRow = new TableRow(AdminScreen.this);
 
                         TextView number = new TextView(AdminScreen.this);
+                        number.setTextColor(Color.rgb(233		, 116, 81));
                         TextView hour = new TextView(AdminScreen.this);
+                        hour.setTextColor(Color.rgb(233		, 116, 81));
                         TextView date = new TextView(AdminScreen.this);
+                        date.setTextColor(Color.rgb(233	, 116, 81));
                         TextView payment = new TextView(AdminScreen.this);
+                        payment.setTextColor(Color.rgb(233	, 116, 81));
 
                         newRow.addView(number);
                         newRow.addView(hour);

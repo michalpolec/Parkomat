@@ -29,9 +29,6 @@ public class MainScreen extends AppCompatActivity {
     private String currentDate;
     private String Date;
 
-    Logger logger = Logger.getLogger(MainScreen.class.getName());
-
-
     public void init() {
         anuluj = findViewById(R.id.cancel);
         anuluj.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +55,7 @@ public class MainScreen extends AppCompatActivity {
                 Cash.setDateOfParking(Date);
                 Cash.setTimeOfParking(ileCzasu());
                 startActivity(payment);
+                pay.setEnabled(false);
 
             }
         });

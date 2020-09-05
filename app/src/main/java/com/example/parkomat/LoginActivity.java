@@ -62,6 +62,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (adminLogin.equals(correctLogin) && adminPassword.equals(correctPassword)) {
                     checkVehicle();
                     deleteVehicle();
+                    login.setText("");
+                    password.setText("");
                     Intent Admin = new Intent(LoginActivity.this, AdminScreen.class);
                     startActivity(Admin);
                 } else {
@@ -93,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
     public static void checkVehicle() {
 
         List<Vehicle> vehicles = dbHelper.getAllData(LoginActivity.db);
+
+        vehiclesWithValidTicket.clear();
+        vehiclesWithInvalidTicket.clear();
+
         for(Vehicle vehicle : vehicles){
             vehiclesWithValidTicket.add(vehicle);
         }

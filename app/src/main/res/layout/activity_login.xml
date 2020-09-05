@@ -123,6 +123,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
         app:srcCompat="@drawable/car"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:srcCompat="@drawable/car" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

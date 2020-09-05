@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
 
         try {
@@ -129,7 +131,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     if (godzina < hour) {
                         vehiclesWithInvalidTicket.add(i);
-                    } else if (minuta < minute) {
+                    }
+
+                    if (godzina == hour && minuta < minute)
+                    {
                         vehiclesWithInvalidTicket.add(i);
                     }
                 }

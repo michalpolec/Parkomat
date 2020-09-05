@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminScreen">
+    tools:context=".AdminScreen"
+    android:background="@color/colorPrimary">
 
     <Button
         android:id="@+id/validVehicle"
@@ -13,10 +14,12 @@
         android:text="Pojazdy z ważnym biletem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.89"
+        android:background="@color/colorRose"
+        android:textColor="@color/colorAccent"/>
 
     <Button
         android:id="@+id/invalidVehicle"
@@ -28,30 +31,34 @@
         app:layout_constraintHorizontal_bias="0.877"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.89" />
+        app:layout_constraintVertical_bias="0.89"
+        android:background="@color/colorRose"
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/titleOfTable"
         android:layout_width="348dp"
         android:layout_height="41dp"
-        android:layout_marginTop="28dp"
-        android:textColor="#3477EB"
+        android:layout_marginTop="44dp"
+        android:textColor="@color/sjenapalona"
+        android:textColorLink="@color/sjenapalona"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView3"
-        android:layout_width="342dp"
-        android:layout_height="261dp"
+        android:layout_width="345dp"
+        android:layout_height="374dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.444">
+        app:layout_constraintVertical_bias="0.526">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,14 +80,14 @@
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleOfTable"
-        app:layout_constraintVertical_bias="0.843" >
+        app:layout_constraintVertical_bias="0.843">
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="101dp"
             android:layout_height="wrap_content"
             android:text="Numer rejestracyjny"
-            android:textColor="#3477EB" />
+            android:textColor="@color/colorRose" />
 
         <TextView
             android:id="@+id/textView16"
@@ -88,21 +95,21 @@
             android:layout_height="match_parent"
             android:text="Godzina"
             android:textAllCaps="false"
-            android:textColor="#3477EB" />
+            android:textColor="@color/colorRose" />
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="101dp"
             android:layout_height="match_parent"
             android:text="Data"
-            android:textColor="#3477EB" />
+            android:textColor="@color/colorRose" />
 
         <TextView
             android:id="@+id/textView18"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Koszt"
-            android:textColor="#3477EB" />
+            android:textColor="@color/colorRose" />
     </TableRow>
 
 

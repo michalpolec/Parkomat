@@ -1,5 +1,6 @@
 package com.example.parkomat;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -73,16 +74,20 @@ public class AdminScreen extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cleanTable(tableWithVehicles);
-                titleOfTable.setText("Pojazdy z nieważnym biletem.");
+                titleOfTable.setText("Pojazdy z nieważnym biletem");
                 if (!LoginActivity.vehiclesWithInvalidTicket.isEmpty()) {
                     for (Vehicle vehicle : LoginActivity.vehiclesWithInvalidTicket) {
 
                         TableRow newRow = new TableRow(AdminScreen.this);
 
                         TextView number = new TextView(AdminScreen.this);
+                        number.setTextColor(Color.rgb(233		, 116, 81));
                         TextView hour = new TextView(AdminScreen.this);
+                        hour.setTextColor(Color.rgb(233		, 116, 81));
                         TextView date = new TextView(AdminScreen.this);
+                        date.setTextColor(Color.rgb(233	, 116, 81));
                         TextView payment = new TextView(AdminScreen.this);
+                        payment.setTextColor(Color.rgb(233	, 116, 81));
 
                         newRow.addView(number);
                         newRow.addView(hour);
@@ -112,7 +117,7 @@ public class AdminScreen extends AppCompatActivity {
     private void cleanTable(TableLayout table) {
         int childCount = table.getChildCount();
 
-        if (childCount > 1) {
+        if (childCount >= 1) {
             table.removeViews(0, childCount);
         }
     }

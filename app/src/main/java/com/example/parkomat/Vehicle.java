@@ -19,14 +19,6 @@ public class Vehicle {
         return registrationNumber;
     }
 
-    public void setRegistrationNumber(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-    }
-
-    public void setPayment(Double cena) {
-        this.payment = cena;
-    }
-
     public Double getPayment() {
         return payment;
     }
@@ -35,25 +27,14 @@ public class Vehicle {
         return hour;
     }
 
-    public void setHour(int hour) {
-        this.hour = hour;
-    }
-
     public int getMinute() {
         return minute;
-    }
-
-    public void setMinute(int minute) {
-        this.minute = minute;
     }
 
     public String getDate() {
         return date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
-    }
 
 
 }

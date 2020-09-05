@@ -25,8 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     static MainSQLiteDBHelper dbHelper;
     static SQLiteDatabase db;
 
-    private String correctLogin = "";
-    private String correctPassword = "";
+    private String correctLogin = "admin";
+    private String correctPassword = "admin";
 
     private void init(){
         dbHelper = new MainSQLiteDBHelper(getApplicationContext());
